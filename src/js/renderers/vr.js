@@ -96,10 +96,8 @@ const VrAPI = {
 	 * @param {Object} settings - an object with settings needed to instantiate VR View Player object
 	 */
 	createInstance: (settings) => {
-		window.addEventListener('load', () => {
-			let player = new VRView.Player('#' + settings.id, settings.options);
-			window['__ready__' + settings.id](player);
-		});
+		let player = new VRView.Player('#' + settings.id, settings.options);
+		window['__ready__' + settings.id](player);
 	}
 };
 
