@@ -56,9 +56,9 @@ var _mejs = _dereq_(6);
 
 var _mejs2 = _interopRequireDefault(_mejs);
 
-var _en = _dereq_(14);
+var _en = _dereq_(15);
 
-var _general = _dereq_(19);
+var _general = _dereq_(20);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -429,7 +429,7 @@ if (typeof mejsL10n !== 'undefined') {
 
 exports.default = i18n;
 
-},{"14":14,"19":19,"6":6}],5:[function(_dereq_,module,exports){
+},{"15":15,"20":20,"6":6}],5:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -448,7 +448,7 @@ var _mejs = _dereq_(6);
 
 var _mejs2 = _interopRequireDefault(_mejs);
 
-var _media = _dereq_(20);
+var _media = _dereq_(21);
 
 var _renderer = _dereq_(7);
 
@@ -861,7 +861,7 @@ _window2.default.MediaElement = MediaElement;
 
 exports.default = MediaElement;
 
-},{"2":2,"20":20,"3":3,"6":6,"7":7}],6:[function(_dereq_,module,exports){
+},{"2":2,"21":21,"3":3,"6":6,"7":7}],6:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1057,11 +1057,11 @@ var _i18n = _dereq_(4);
 
 var _i18n2 = _interopRequireDefault(_i18n);
 
-var _player = _dereq_(16);
+var _player = _dereq_(17);
 
 var _player2 = _interopRequireDefault(_player);
 
-var _constants = _dereq_(17);
+var _constants = _dereq_(18);
 
 var Features = _interopRequireWildcard(_constants);
 
@@ -1544,10 +1544,10 @@ Object.assign(_player2.default.prototype, {
 	}
 });
 
-},{"16":16,"17":17,"2":2,"3":3,"4":4,"6":6}],9:[function(_dereq_,module,exports){
+},{"17":17,"18":18,"2":2,"3":3,"4":4,"6":6}],9:[function(_dereq_,module,exports){
 'use strict';
 
-var _player = _dereq_(16);
+var _player = _dereq_(17);
 
 var _player2 = _interopRequireDefault(_player);
 
@@ -1646,10 +1646,10 @@ Object.assign(_player2.default.prototype, {
 	}
 });
 
-},{"16":16,"4":4}],10:[function(_dereq_,module,exports){
+},{"17":17,"4":4}],10:[function(_dereq_,module,exports){
 'use strict';
 
-var _player = _dereq_(16);
+var _player = _dereq_(17);
 
 var _player2 = _interopRequireDefault(_player);
 
@@ -1657,9 +1657,9 @@ var _i18n = _dereq_(4);
 
 var _i18n2 = _interopRequireDefault(_i18n);
 
-var _constants = _dereq_(17);
+var _constants = _dereq_(18);
 
-var _time = _dereq_(21);
+var _time = _dereq_(22);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2032,14 +2032,14 @@ Object.assign(_player2.default.prototype, {
 	}
 });
 
-},{"16":16,"17":17,"21":21,"4":4}],11:[function(_dereq_,module,exports){
+},{"17":17,"18":18,"22":22,"4":4}],11:[function(_dereq_,module,exports){
 'use strict';
 
-var _player = _dereq_(16);
+var _player = _dereq_(17);
 
 var _player2 = _interopRequireDefault(_player);
 
-var _time = _dereq_(21);
+var _time = _dereq_(22);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2162,7 +2162,7 @@ Object.assign(_player2.default.prototype, {
 	}
 });
 
-},{"16":16,"21":21}],12:[function(_dereq_,module,exports){
+},{"17":17,"22":22}],12:[function(_dereq_,module,exports){
 'use strict';
 
 var _mejs = _dereq_(6);
@@ -2173,11 +2173,11 @@ var _i18n = _dereq_(4);
 
 var _i18n2 = _interopRequireDefault(_i18n);
 
-var _player = _dereq_(16);
+var _player = _dereq_(17);
 
 var _player2 = _interopRequireDefault(_player);
 
-var _time = _dereq_(21);
+var _time = _dereq_(22);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3023,10 +3023,10 @@ if ('x\n\ny'.split(/\n/gi).length !== 3) {
 	};
 }
 
-},{"16":16,"21":21,"4":4,"6":6}],13:[function(_dereq_,module,exports){
+},{"17":17,"22":22,"4":4,"6":6}],13:[function(_dereq_,module,exports){
 'use strict';
 
-var _player = _dereq_(16);
+var _player = _dereq_(17);
 
 var _player2 = _interopRequireDefault(_player);
 
@@ -3034,7 +3034,7 @@ var _i18n = _dereq_(4);
 
 var _i18n2 = _interopRequireDefault(_i18n);
 
-var _constants = _dereq_(17);
+var _constants = _dereq_(18);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3324,7 +3324,77 @@ Object.assign(_player2.default.prototype, {
 	}
 });
 
-},{"16":16,"17":17,"4":4}],14:[function(_dereq_,module,exports){
+},{"17":17,"18":18,"4":4}],14:[function(_dereq_,module,exports){
+'use strict';
+
+var _player = _dereq_(17);
+
+var _player2 = _interopRequireDefault(_player);
+
+var _renderer = _dereq_(7);
+
+var _media = _dereq_(21);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * VR support
+ *
+ * This feature uses Google's VR View and creates an <iframe> that allows the user to see 360 videos.
+ * @see https://developers.google.com/vr/concepts/vrview-web
+ */
+
+// Feature configuration
+Object.assign(_player.config, {
+	/**
+  * @type {Boolean}
+  */
+	supportVR: false,
+	/**
+  * https://developers.google.com/vr/concepts/vrview-web#vr_view
+  */
+	vr: {
+		// customs
+		path: '//storage.googleapis.com/vrview/2.0/build/vrview.min.js',
+		image: '',
+		is_stereo: true,
+		is_autopan_off: true,
+		is_debug: false,
+		is_vr_off: false,
+		default_yaw: 0,
+		is_yaw_only: false
+	}
+});
+
+Object.assign(_player2.default.prototype, {
+
+	/**
+  * Feature constructor.
+  *
+  * Always has to be prefixed with `build` and the name that will be used in MepDefaults.features list
+  * @param {MediaElementPlayer} player
+  * @param {$} controls
+  * @param {$} layers
+  * @param {HTMLElement} media
+  */
+	buildvr: function buildvr(player, controls, layers, media) {
+
+		var t = this;
+
+		// Currently it only accepts MP4, DASH and HLS
+		if (!t.isVideo || !t.options.supportVR || t.isVideo && t.media.rendererName !== null && !t.media.rendererName.match(/(native\_(dash|hls)|html5)/)) {
+			return;
+		}
+
+		var url = media.getSrc(),
+		    mediaFiles = [{ src: url, type: (0, _media.getTypeFromFile)(url) }],
+		    renderInfo = _renderer.renderer.select(mediaFiles, ['vr']);
+
+		media.changeRenderer(renderInfo.rendererName, mediaFiles);
+	}
+});
+
+},{"17":17,"21":21,"7":7}],15:[function(_dereq_,module,exports){
 'use strict';
 
 /*!
@@ -3465,7 +3535,7 @@ var EN = exports.EN = {
 	"mejs.yiddish": "Yiddish"
 };
 
-},{}],15:[function(_dereq_,module,exports){
+},{}],16:[function(_dereq_,module,exports){
 'use strict';
 
 var _window = _dereq_(3);
@@ -3496,7 +3566,7 @@ if (typeof jQuery !== 'undefined') {
 	_mejs2.default.$ = _window2.default.ender = _window2.default.$ = ender;
 }
 
-},{"3":3,"6":6}],16:[function(_dereq_,module,exports){
+},{"3":3,"6":6}],17:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3528,13 +3598,13 @@ var _i18n = _dereq_(4);
 
 var _i18n2 = _interopRequireDefault(_i18n);
 
-var _constants = _dereq_(17);
+var _constants = _dereq_(18);
 
-var _general = _dereq_(19);
+var _general = _dereq_(20);
 
-var _time = _dereq_(21);
+var _time = _dereq_(22);
 
-var _dom = _dereq_(18);
+var _dom = _dereq_(19);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4855,8 +4925,8 @@ var MediaElementPlayer = function () {
 				}
 			});
 
-			// if (t.options.supportVR || (t.media.rendererName !== null && t.media.rendererName.match(/(youtube|facebook)/))) {
-			if (t.media.rendererName !== null && t.media.rendererName.match(/(youtube|facebook)/)) {
+			if (t.options.supportVR || t.media.rendererName !== null && t.media.rendererName.match(/(youtube|facebook)/)) {
+				// if (t.media.rendererName !== null && t.media.rendererName.match(/(youtube|facebook)/)) {
 				bigPlay.hide();
 			}
 
@@ -5124,7 +5194,7 @@ exports.default = MediaElementPlayer;
 	}
 })(_mejs2.default.$);
 
-},{"17":17,"18":18,"19":19,"2":2,"21":21,"3":3,"4":4,"5":5,"6":6}],17:[function(_dereq_,module,exports){
+},{"18":18,"19":19,"2":2,"20":20,"22":22,"3":3,"4":4,"5":5,"6":6}],18:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5315,7 +5385,7 @@ _mejs2.default.Features.isFullScreen = isFullScreen;
 _mejs2.default.Features.requestFullScreen = requestFullScreen;
 _mejs2.default.Features.cancelFullScreen = cancelFullScreen;
 
-},{"2":2,"3":3,"6":6}],18:[function(_dereq_,module,exports){
+},{"2":2,"3":3,"6":6}],19:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5412,7 +5482,7 @@ _mejs2.default.Utils.createEvent = createEvent;
 _mejs2.default.Utils.removeEvent = removeEvent;
 _mejs2.default.Utils.isNodeAfter = isNodeAfter;
 
-},{"2":2,"6":6}],19:[function(_dereq_,module,exports){
+},{"2":2,"6":6}],20:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5569,7 +5639,7 @@ _mejs2.default.Utils.isObjectEmpty = isObjectEmpty;
 _mejs2.default.Utils.splitEvents = splitEvents;
 _mejs2.default.Utils.getElementsByClassName = getElementsByClassName;
 
-},{"2":2,"6":6}],20:[function(_dereq_,module,exports){
+},{"2":2,"6":6}],21:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5587,7 +5657,7 @@ var _mejs = _dereq_(6);
 
 var _mejs2 = _interopRequireDefault(_mejs);
 
-var _general = _dereq_(19);
+var _general = _dereq_(20);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5739,7 +5809,7 @@ _mejs2.default.Utils.getTypeFromFile = getTypeFromFile;
 _mejs2.default.Utils.getExtension = getExtension;
 _mejs2.default.Utils.normalizeExtension = normalizeExtension;
 
-},{"19":19,"6":6}],21:[function(_dereq_,module,exports){
+},{"20":20,"6":6}],22:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5934,4 +6004,4 @@ _mejs2.default.Utils.timeCodeToSeconds = timeCodeToSeconds;
 _mejs2.default.Utils.calculateTimeFormat = calculateTimeFormat;
 _mejs2.default.Utils.convertSMPTEtoSeconds = convertSMPTEtoSeconds;
 
-},{"6":6}]},{},[15,16,8,9,10,11,12,13]);
+},{"6":6}]},{},[16,17,8,9,10,11,12,13,14]);

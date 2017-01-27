@@ -57,6 +57,7 @@ module.exports = function(grunt) {
 						'src/js/core/i18n.js',
 						'src/js/languages/en.js',
 						'src/js/renderers/html5.js',
+						'src/js/renderers/vr.js',
 						'src/js/renderers/flash.js'
 					].concat(rendererSources || [
 						'src/js/renderers/dailymotion.js',
@@ -77,7 +78,8 @@ module.exports = function(grunt) {
 						'src/js/features/progress.js',
 						'src/js/features/time.js',
 						'src/js/features/tracks.js',
-						'src/js/features/volume.js'
+						'src/js/features/volume.js',
+						'src/js/features/vr.js'
 					],
 					// all bundle
 					'build/mediaelement-and-player.js': [
@@ -86,6 +88,7 @@ module.exports = function(grunt) {
 						'src/js/core/i18n.js',
 						'src/js/languages/en.js',
 						'src/js/renderers/html5.js',
+						'src/js/renderers/vr.js',
 						'src/js/renderers/flash.js'
 					].concat(rendererSources || [
 						'src/js/renderers/dailymotion.js',
@@ -104,7 +107,8 @@ module.exports = function(grunt) {
 						'src/js/features/progress.js',
 						'src/js/features/time.js',
 						'src/js/features/tracks.js',
-						'src/js/features/volume.js'
+						'src/js/features/volume.js',
+						'src/js/features/vr.js'
 					])
 				},
 				options: {

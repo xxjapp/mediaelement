@@ -56,9 +56,9 @@ var _mejs = _dereq_(6);
 
 var _mejs2 = _interopRequireDefault(_mejs);
 
-var _en = _dereq_(14);
+var _en = _dereq_(15);
 
-var _general = _dereq_(29);
+var _general = _dereq_(31);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -429,7 +429,7 @@ if (typeof mejsL10n !== 'undefined') {
 
 exports.default = i18n;
 
-},{"14":14,"29":29,"6":6}],5:[function(_dereq_,module,exports){
+},{"15":15,"31":31,"6":6}],5:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -448,7 +448,7 @@ var _mejs = _dereq_(6);
 
 var _mejs2 = _interopRequireDefault(_mejs);
 
-var _media = _dereq_(30);
+var _media = _dereq_(32);
 
 var _renderer = _dereq_(7);
 
@@ -861,7 +861,7 @@ _window2.default.MediaElement = MediaElement;
 
 exports.default = MediaElement;
 
-},{"2":2,"3":3,"30":30,"6":6,"7":7}],6:[function(_dereq_,module,exports){
+},{"2":2,"3":3,"32":32,"6":6,"7":7}],6:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1057,11 +1057,11 @@ var _i18n = _dereq_(4);
 
 var _i18n2 = _interopRequireDefault(_i18n);
 
-var _player = _dereq_(16);
+var _player = _dereq_(17);
 
 var _player2 = _interopRequireDefault(_player);
 
-var _constants = _dereq_(27);
+var _constants = _dereq_(29);
 
 var Features = _interopRequireWildcard(_constants);
 
@@ -1544,10 +1544,10 @@ Object.assign(_player2.default.prototype, {
 	}
 });
 
-},{"16":16,"2":2,"27":27,"3":3,"4":4,"6":6}],9:[function(_dereq_,module,exports){
+},{"17":17,"2":2,"29":29,"3":3,"4":4,"6":6}],9:[function(_dereq_,module,exports){
 'use strict';
 
-var _player = _dereq_(16);
+var _player = _dereq_(17);
 
 var _player2 = _interopRequireDefault(_player);
 
@@ -1646,10 +1646,10 @@ Object.assign(_player2.default.prototype, {
 	}
 });
 
-},{"16":16,"4":4}],10:[function(_dereq_,module,exports){
+},{"17":17,"4":4}],10:[function(_dereq_,module,exports){
 'use strict';
 
-var _player = _dereq_(16);
+var _player = _dereq_(17);
 
 var _player2 = _interopRequireDefault(_player);
 
@@ -1657,9 +1657,9 @@ var _i18n = _dereq_(4);
 
 var _i18n2 = _interopRequireDefault(_i18n);
 
-var _constants = _dereq_(27);
+var _constants = _dereq_(29);
 
-var _time = _dereq_(32);
+var _time = _dereq_(34);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2032,14 +2032,14 @@ Object.assign(_player2.default.prototype, {
 	}
 });
 
-},{"16":16,"27":27,"32":32,"4":4}],11:[function(_dereq_,module,exports){
+},{"17":17,"29":29,"34":34,"4":4}],11:[function(_dereq_,module,exports){
 'use strict';
 
-var _player = _dereq_(16);
+var _player = _dereq_(17);
 
 var _player2 = _interopRequireDefault(_player);
 
-var _time = _dereq_(32);
+var _time = _dereq_(34);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2162,7 +2162,7 @@ Object.assign(_player2.default.prototype, {
 	}
 });
 
-},{"16":16,"32":32}],12:[function(_dereq_,module,exports){
+},{"17":17,"34":34}],12:[function(_dereq_,module,exports){
 'use strict';
 
 var _mejs = _dereq_(6);
@@ -2173,11 +2173,11 @@ var _i18n = _dereq_(4);
 
 var _i18n2 = _interopRequireDefault(_i18n);
 
-var _player = _dereq_(16);
+var _player = _dereq_(17);
 
 var _player2 = _interopRequireDefault(_player);
 
-var _time = _dereq_(32);
+var _time = _dereq_(34);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3023,10 +3023,10 @@ if ('x\n\ny'.split(/\n/gi).length !== 3) {
 	};
 }
 
-},{"16":16,"32":32,"4":4,"6":6}],13:[function(_dereq_,module,exports){
+},{"17":17,"34":34,"4":4,"6":6}],13:[function(_dereq_,module,exports){
 'use strict';
 
-var _player = _dereq_(16);
+var _player = _dereq_(17);
 
 var _player2 = _interopRequireDefault(_player);
 
@@ -3034,7 +3034,7 @@ var _i18n = _dereq_(4);
 
 var _i18n2 = _interopRequireDefault(_i18n);
 
-var _constants = _dereq_(27);
+var _constants = _dereq_(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3324,7 +3324,77 @@ Object.assign(_player2.default.prototype, {
 	}
 });
 
-},{"16":16,"27":27,"4":4}],14:[function(_dereq_,module,exports){
+},{"17":17,"29":29,"4":4}],14:[function(_dereq_,module,exports){
+'use strict';
+
+var _player = _dereq_(17);
+
+var _player2 = _interopRequireDefault(_player);
+
+var _renderer = _dereq_(7);
+
+var _media = _dereq_(32);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * VR support
+ *
+ * This feature uses Google's VR View and creates an <iframe> that allows the user to see 360 videos.
+ * @see https://developers.google.com/vr/concepts/vrview-web
+ */
+
+// Feature configuration
+Object.assign(_player.config, {
+	/**
+  * @type {Boolean}
+  */
+	supportVR: false,
+	/**
+  * https://developers.google.com/vr/concepts/vrview-web#vr_view
+  */
+	vr: {
+		// customs
+		path: '//storage.googleapis.com/vrview/2.0/build/vrview.min.js',
+		image: '',
+		is_stereo: true,
+		is_autopan_off: true,
+		is_debug: false,
+		is_vr_off: false,
+		default_yaw: 0,
+		is_yaw_only: false
+	}
+});
+
+Object.assign(_player2.default.prototype, {
+
+	/**
+  * Feature constructor.
+  *
+  * Always has to be prefixed with `build` and the name that will be used in MepDefaults.features list
+  * @param {MediaElementPlayer} player
+  * @param {$} controls
+  * @param {$} layers
+  * @param {HTMLElement} media
+  */
+	buildvr: function buildvr(player, controls, layers, media) {
+
+		var t = this;
+
+		// Currently it only accepts MP4, DASH and HLS
+		if (!t.isVideo || !t.options.supportVR || t.isVideo && t.media.rendererName !== null && !t.media.rendererName.match(/(native\_(dash|hls)|html5)/)) {
+			return;
+		}
+
+		var url = media.getSrc(),
+		    mediaFiles = [{ src: url, type: (0, _media.getTypeFromFile)(url) }],
+		    renderInfo = _renderer.renderer.select(mediaFiles, ['vr']);
+
+		media.changeRenderer(renderInfo.rendererName, mediaFiles);
+	}
+});
+
+},{"17":17,"32":32,"7":7}],15:[function(_dereq_,module,exports){
 'use strict';
 
 /*!
@@ -3465,7 +3535,7 @@ var EN = exports.EN = {
 	"mejs.yiddish": "Yiddish"
 };
 
-},{}],15:[function(_dereq_,module,exports){
+},{}],16:[function(_dereq_,module,exports){
 'use strict';
 
 var _window = _dereq_(3);
@@ -3496,7 +3566,7 @@ if (typeof jQuery !== 'undefined') {
 	_mejs2.default.$ = _window2.default.ender = _window2.default.$ = ender;
 }
 
-},{"3":3,"6":6}],16:[function(_dereq_,module,exports){
+},{"3":3,"6":6}],17:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3528,13 +3598,13 @@ var _i18n = _dereq_(4);
 
 var _i18n2 = _interopRequireDefault(_i18n);
 
-var _constants = _dereq_(27);
+var _constants = _dereq_(29);
 
-var _general = _dereq_(29);
+var _general = _dereq_(31);
 
-var _time = _dereq_(32);
+var _time = _dereq_(34);
 
-var _dom = _dereq_(28);
+var _dom = _dereq_(30);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4855,8 +4925,8 @@ var MediaElementPlayer = function () {
 				}
 			});
 
-			// if (t.options.supportVR || (t.media.rendererName !== null && t.media.rendererName.match(/(youtube|facebook)/))) {
-			if (t.media.rendererName !== null && t.media.rendererName.match(/(youtube|facebook)/)) {
+			if (t.options.supportVR || t.media.rendererName !== null && t.media.rendererName.match(/(youtube|facebook)/)) {
+				// if (t.media.rendererName !== null && t.media.rendererName.match(/(youtube|facebook)/)) {
 				bigPlay.hide();
 			}
 
@@ -5124,7 +5194,7 @@ exports.default = MediaElementPlayer;
 	}
 })(_mejs2.default.$);
 
-},{"2":2,"27":27,"28":28,"29":29,"3":3,"32":32,"4":4,"5":5,"6":6}],17:[function(_dereq_,module,exports){
+},{"2":2,"29":29,"3":3,"30":30,"31":31,"34":34,"4":4,"5":5,"6":6}],18:[function(_dereq_,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -5143,9 +5213,9 @@ var _mejs2 = _interopRequireDefault(_mejs);
 
 var _renderer = _dereq_(7);
 
-var _dom = _dereq_(28);
+var _dom = _dereq_(30);
 
-var _media = _dereq_(30);
+var _media = _dereq_(32);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5648,7 +5718,7 @@ _window2.default.dmAsyncInit = function () {
 
 _renderer.renderer.add(DailyMotionIframeRenderer);
 
-},{"2":2,"28":28,"3":3,"30":30,"6":6,"7":7}],18:[function(_dereq_,module,exports){
+},{"2":2,"3":3,"30":30,"32":32,"6":6,"7":7}],19:[function(_dereq_,module,exports){
 'use strict';
 
 var _window = _dereq_(3);
@@ -5665,11 +5735,11 @@ var _mejs2 = _interopRequireDefault(_mejs);
 
 var _renderer = _dereq_(7);
 
-var _dom = _dereq_(28);
+var _dom = _dereq_(30);
 
-var _media = _dereq_(30);
+var _media = _dereq_(32);
 
-var _constants = _dereq_(27);
+var _constants = _dereq_(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5976,7 +6046,7 @@ _media.typeChecks.push(function (url) {
 
 _renderer.renderer.add(DashNativeRenderer);
 
-},{"2":2,"27":27,"28":28,"3":3,"30":30,"6":6,"7":7}],19:[function(_dereq_,module,exports){
+},{"2":2,"29":29,"3":3,"30":30,"32":32,"6":6,"7":7}],20:[function(_dereq_,module,exports){
 'use strict';
 
 var _window = _dereq_(3);
@@ -5993,11 +6063,11 @@ var _mejs2 = _interopRequireDefault(_mejs);
 
 var _renderer = _dereq_(7);
 
-var _general = _dereq_(29);
+var _general = _dereq_(31);
 
-var _dom = _dereq_(28);
+var _dom = _dereq_(30);
 
-var _media = _dereq_(30);
+var _media = _dereq_(32);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6405,7 +6475,7 @@ _media.typeChecks.push(function (url) {
 
 _renderer.renderer.add(FacebookRenderer);
 
-},{"2":2,"28":28,"29":29,"3":3,"30":30,"6":6,"7":7}],20:[function(_dereq_,module,exports){
+},{"2":2,"3":3,"30":30,"31":31,"32":32,"6":6,"7":7}],21:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6433,11 +6503,11 @@ var _i18n2 = _interopRequireDefault(_i18n);
 
 var _renderer = _dereq_(7);
 
-var _dom = _dereq_(28);
+var _dom = _dereq_(30);
 
-var _constants = _dereq_(27);
+var _constants = _dereq_(29);
 
-var _media = _dereq_(30);
+var _media = _dereq_(32);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6937,7 +7007,7 @@ if (hasFlash) {
 	_renderer.renderer.add(FlashMediaElementAudioOggRenderer);
 }
 
-},{"2":2,"27":27,"28":28,"3":3,"30":30,"4":4,"6":6,"7":7}],21:[function(_dereq_,module,exports){
+},{"2":2,"29":29,"3":3,"30":30,"32":32,"4":4,"6":6,"7":7}],22:[function(_dereq_,module,exports){
 'use strict';
 
 var _window = _dereq_(3);
@@ -6954,11 +7024,11 @@ var _mejs2 = _interopRequireDefault(_mejs);
 
 var _renderer = _dereq_(7);
 
-var _dom = _dereq_(28);
+var _dom = _dereq_(30);
 
-var _constants = _dereq_(27);
+var _constants = _dereq_(29);
 
-var _media = _dereq_(30);
+var _media = _dereq_(32);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7265,7 +7335,7 @@ _media.typeChecks.push(function (url) {
 
 _renderer.renderer.add(FlvNativeRenderer);
 
-},{"2":2,"27":27,"28":28,"3":3,"30":30,"6":6,"7":7}],22:[function(_dereq_,module,exports){
+},{"2":2,"29":29,"3":3,"30":30,"32":32,"6":6,"7":7}],23:[function(_dereq_,module,exports){
 'use strict';
 
 var _window = _dereq_(3);
@@ -7282,11 +7352,11 @@ var _mejs2 = _interopRequireDefault(_mejs);
 
 var _renderer = _dereq_(7);
 
-var _dom = _dereq_(28);
+var _dom = _dereq_(30);
 
-var _constants = _dereq_(27);
+var _constants = _dereq_(29);
 
-var _media = _dereq_(30);
+var _media = _dereq_(32);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7677,7 +7747,7 @@ _media.typeChecks.push(function (url) {
 
 _renderer.renderer.add(HlsNativeRenderer);
 
-},{"2":2,"27":27,"28":28,"3":3,"30":30,"6":6,"7":7}],23:[function(_dereq_,module,exports){
+},{"2":2,"29":29,"3":3,"30":30,"32":32,"6":6,"7":7}],24:[function(_dereq_,module,exports){
 'use strict';
 
 var _window = _dereq_(3);
@@ -7694,9 +7764,9 @@ var _mejs2 = _interopRequireDefault(_mejs);
 
 var _renderer = _dereq_(7);
 
-var _dom = _dereq_(28);
+var _dom = _dereq_(30);
 
-var _constants = _dereq_(27);
+var _constants = _dereq_(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7833,7 +7903,7 @@ _window2.default.HtmlMediaElement = _mejs2.default.HtmlMediaElement = HtmlMediaE
 
 _renderer.renderer.add(HtmlMediaElement);
 
-},{"2":2,"27":27,"28":28,"3":3,"6":6,"7":7}],24:[function(_dereq_,module,exports){
+},{"2":2,"29":29,"3":3,"30":30,"6":6,"7":7}],25:[function(_dereq_,module,exports){
 'use strict';
 
 var _window = _dereq_(3);
@@ -7850,9 +7920,9 @@ var _mejs2 = _interopRequireDefault(_mejs);
 
 var _renderer = _dereq_(7);
 
-var _dom = _dereq_(28);
+var _dom = _dereq_(30);
 
-var _media = _dereq_(30);
+var _media = _dereq_(32);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8281,7 +8351,7 @@ _media.typeChecks.push(function (url) {
 
 _renderer.renderer.add(SoundCloudIframeRenderer);
 
-},{"2":2,"28":28,"3":3,"30":30,"6":6,"7":7}],25:[function(_dereq_,module,exports){
+},{"2":2,"3":3,"30":30,"32":32,"6":6,"7":7}],26:[function(_dereq_,module,exports){
 'use strict';
 
 var _window = _dereq_(3);
@@ -8298,9 +8368,9 @@ var _mejs2 = _interopRequireDefault(_mejs);
 
 var _renderer = _dereq_(7);
 
-var _dom = _dereq_(28);
+var _dom = _dereq_(30);
 
-var _media = _dereq_(30);
+var _media = _dereq_(32);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8823,7 +8893,397 @@ _media.typeChecks.push(function (url) {
 
 _renderer.renderer.add(vimeoIframeRenderer);
 
-},{"2":2,"28":28,"3":3,"30":30,"6":6,"7":7}],26:[function(_dereq_,module,exports){
+},{"2":2,"3":3,"30":30,"32":32,"6":6,"7":7}],27:[function(_dereq_,module,exports){
+'use strict';
+
+var _window = _dereq_(3);
+
+var _window2 = _interopRequireDefault(_window);
+
+var _document = _dereq_(2);
+
+var _document2 = _interopRequireDefault(_document);
+
+var _mejs = _dereq_(6);
+
+var _mejs2 = _interopRequireDefault(_mejs);
+
+var _renderer = _dereq_(7);
+
+var _dom = _dereq_(30);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * VR renderer
+ *
+ * It uses Google's VR View and creates an <iframe> that allows the user to see 360 videos
+ * @see https://developers.google.com/vr/concepts/vrview-web
+ */
+var VrAPI = {
+	/**
+  * @type {Boolean}
+  */
+	isMediaStarted: false,
+	/**
+  * @type {Boolean}
+  */
+	isMediaLoaded: false,
+	/**
+  * @type {Array}
+  */
+	creationQueue: [],
+
+	/**
+  * Create a queue to prepare the loading of the VR View Player
+  * @param {Object} settings - an object with settings needed to load an VR View Player instance
+  */
+	prepareSettings: function prepareSettings(settings) {
+		if (VrAPI.isLoaded) {
+			VrAPI.createInstance(settings);
+		} else {
+			VrAPI.loadScript(settings);
+			VrAPI.creationQueue.push(settings);
+		}
+	},
+
+	/**
+  * Load vrview.min.js script on the header of the document
+  *
+  * @param {Object} settings - an object with settings needed to load an HLS player instance
+  */
+	loadScript: function loadScript(settings) {
+		if (!VrAPI.isMediaStarted) {
+
+			if (typeof VRView !== 'undefined') {
+				VrAPI.createInstance(settings);
+			} else {
+				(function () {
+					var script = _document2.default.createElement('script'),
+					    firstScriptTag = _document2.default.getElementsByTagName('script')[0],
+					    done = false;
+
+					settings.options.path = typeof settings.options.path === 'string' ? settings.options.path : '//storage.googleapis.com/vrview/2.0/build/vrview.min.js';
+
+					script.src = settings.options.path;
+
+					// Attach handlers for all browsers
+					script.onload = script.onreadystatechange = function () {
+						if (!done && (!this.readyState || this.readyState === undefined || this.readyState === 'loaded' || this.readyState === 'complete')) {
+							done = true;
+							VrAPI.mediaReady();
+							script.onload = script.onreadystatechange = null;
+						}
+					};
+
+					firstScriptTag.parentNode.insertBefore(script, firstScriptTag);
+				})();
+			}
+			VrAPI.isMediaStarted = true;
+		}
+	},
+
+	/**
+  * Process queue of VR View Player creation
+  *
+  */
+	mediaReady: function mediaReady() {
+		VrAPI.isLoaded = true;
+		VrAPI.isMediaLoaded = true;
+
+		while (VrAPI.creationQueue.length > 0) {
+			var settings = VrAPI.creationQueue.pop();
+			VrAPI.createInstance(settings);
+		}
+	},
+
+	/**
+  * Create a new instance of VrView player and trigger a custom event to initialize it
+  *
+  * @param {Object} settings - an object with settings needed to instantiate VR View Player object
+  */
+	createInstance: function createInstance(settings) {
+		_window2.default.addEventListener('load', function () {
+			var player = new VRView.Player('#' + settings.id, settings.options);
+			_window2.default['__ready__' + settings.id](player);
+		});
+	}
+};
+
+var VrRenderer = {
+	name: 'vr',
+
+	options: {
+		prefix: 'vr',
+		/**
+   * https://developers.google.com/vr/concepts/vrview-web#vr_view
+   */
+		vr: {
+			path: '//storage.googleapis.com/vrview/2.0/build/vrview.min.js',
+			image: '',
+			is_stereo: true,
+			is_autopan_off: true,
+			is_debug: false,
+			is_vr_off: false,
+			default_yaw: 0,
+			is_yaw_only: false
+		}
+	},
+
+	/**
+  * Determine if a specific element type can be played with this render
+  *
+  * @param {String} type
+  * @return {Boolean}
+  */
+	canPlayType: function canPlayType(type) {
+		return ['video/mp4', 'application/x-mpegurl', 'vnd.apple.mpegurl', 'application/dash+xml'].includes(type.toLowerCase());
+	},
+
+	/**
+  * Create the player instance and add all native events/methods/properties as possible
+  *
+  * @param {MediaElement} mediaElement Instance of mejs.MediaElement already created
+  * @param {Object} options All the player configuration options passed through constructor
+  * @param {Object[]} mediaFiles List of sources with format: {src: url, type: x/y-z}
+  * @return {Object}
+  */
+	create: function create(mediaElement, options, mediaFiles) {
+
+		// exposed object
+		var stack = [],
+		    VrAPIReady = false,
+		    vr = {},
+		    vrPlayer = null,
+		    paused = true,
+		    volume = 1,
+		    oldVolume = volume,
+		    currentTime = 0,
+		    bufferedTime = 0,
+		    ended = false,
+		    duration = 0,
+		    url = '',
+		    i = void 0,
+		    il = void 0;
+
+		vr.options = options;
+		vr.id = mediaElement.id + '_' + options.prefix;
+		vr.mediaElement = mediaElement;
+
+		// wrappers for get/set
+		var props = _mejs2.default.html5media.properties,
+		    assignGettersSetters = function assignGettersSetters(propName) {
+
+			var capName = propName.substring(0, 1).toUpperCase() + propName.substring(1);
+
+			vr['get' + capName] = function () {
+				if (vrPlayer !== null) {
+					var value = null;
+
+					switch (propName) {
+						case 'currentTime':
+							return currentTime;
+
+						case 'duration':
+							return duration;
+
+						case 'volume':
+							return volume;
+						case 'muted':
+							return volume === 0;
+						case 'paused':
+							paused = vrPlayer.isPaused;
+							return paused;
+
+						case 'ended':
+							return ended;
+
+						case 'src':
+							return url;
+
+						case 'buffered':
+							return {
+								start: function start() {
+									return 0;
+								},
+								end: function end() {
+									return bufferedTime * duration;
+								},
+								length: 1
+							};
+					}
+
+					return value;
+				} else {
+					return null;
+				}
+			};
+
+			vr['set' + capName] = function (value) {
+
+				if (vrPlayer !== null) {
+
+					// do something
+					switch (propName) {
+
+						case 'src':
+							var _url = typeof value === 'string' ? value : value[0].src;
+							vrPlayer.setContentInfo({ video: _url });
+							break;
+
+						case 'currentTime':
+							vrPlayer.setCurrentTime(value);
+							break;
+
+						case 'volume':
+							vrPlayer.setVolume(value);
+							break;
+						case 'muted':
+							if (value) {
+								vrPlayer.setVolume(0);
+							} else {
+								vrPlayer.setVolume(oldVolume);
+							}
+							break;
+						default:
+							
+					}
+				} else {
+					// store for after "READY" event fires
+					stack.push({ type: 'set', propName: propName, value: value });
+				}
+			};
+		};
+		for (i = 0, il = props.length; i < il; i++) {
+			assignGettersSetters(props[i]);
+		}
+
+		// add wrappers for native methods
+		var methods = _mejs2.default.html5media.methods,
+		    assignMethods = function assignMethods(methodName) {
+			vr[methodName] = function () {
+
+				if (vrPlayer !== null) {
+
+					// DO method
+					switch (methodName) {
+						case 'play':
+							return vrPlayer.play();
+						case 'pause':
+							return vrPlayer.pause();
+						case 'load':
+							return null;
+
+					}
+				} else {
+					stack.push({ type: 'call', methodName: methodName });
+				}
+			};
+		};
+		for (i = 0, il = methods.length; i < il; i++) {
+			assignMethods(methods[i]);
+		}
+
+		// Initial method to register all VRView events when initializing <iframe>
+		_window2.default['__ready__' + vr.id] = function (_vrPlayer) {
+
+			VrAPIReady = true;
+			mediaElement.vrPlayer = vrPlayer = _vrPlayer;
+
+			// do call stack
+			if (stack.length) {
+				for (i = 0, il = stack.length; i < il; i++) {
+
+					var stackItem = stack[i];
+
+					if (stackItem.type === 'set') {
+						var propName = stackItem.propName,
+						    capName = '' + propName.substring(0, 1).toUpperCase() + propName.substring(1);
+
+						node['set' + capName](stackItem.value);
+					} else if (stackItem.type === 'call') {
+						node[stackItem.methodName]();
+					}
+				}
+			}
+
+			vrPlayer.on('ready', function () {
+
+				// a few more events
+				var events = ['mouseover', 'mouseout'];
+
+				var assignEvents = function assignEvents(e) {
+					var event = (0, _dom.createEvent)(e.type, vr);
+					mediaElement.dispatchEvent(event);
+				};
+
+				for (var _i = 0, _il = events.length; _i < _il; _i++) {
+					(0, _dom.addEvent)(vrPlayer, events[_i], assignEvents);
+				}
+
+				// give initial events
+				events = ['rendererready', 'loadeddata', 'loadedmetadata', 'canplay'];
+
+				for (var _i2 = 0, _il2 = events.length; _i2 < _il2; _i2++) {
+					var event = (0, _dom.createEvent)(events[_i2], vr);
+					mediaElement.dispatchEvent(event);
+				}
+			});
+
+			vrPlayer.on('timeupdate', function () {
+				var event = (0, _dom.createEvent)('timeupdate', vr);
+				mediaElement.dispatchEvent(event);
+			});
+		};
+
+		var vrContainer = _document2.default.createElement('div');
+
+		// Create <iframe> markup
+		vrContainer.setAttribute('id', vr.id);
+		vrContainer.style.width = '100%';
+		vrContainer.style.height = '100%';
+
+		mediaElement.originalNode.parentNode.insertBefore(vrContainer, mediaElement.originalNode);
+		mediaElement.originalNode.style.display = 'none';
+
+		if (mediaFiles && mediaFiles.length > 0) {
+			for (i = 0, il = mediaFiles.length; i < il; i++) {
+				if (_renderer.renderer.renderers[options.prefix].canPlayType(mediaFiles[i].type)) {
+					options.vr.video = mediaFiles[i].src;
+					options.vr.width = '100%';
+					options.vr.height = '100%';
+					break;
+				}
+			}
+		}
+
+		VrAPI.prepareSettings({
+			options: options.vr,
+			id: vr.id
+		});
+
+		vr.hide = function () {
+			vr.pause();
+			if (vrPlayer) {
+				vrContainer.style.display = 'none';
+			}
+		};
+
+		vr.setSize = function (width, height) {};
+
+		vr.show = function () {
+			if (vrPlayer) {
+				vrContainer.style.display = '';
+			}
+		};
+
+		return vr;
+	}
+};
+
+_renderer.renderer.add(VrRenderer);
+
+},{"2":2,"3":3,"30":30,"6":6,"7":7}],28:[function(_dereq_,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -8842,9 +9302,9 @@ var _mejs2 = _interopRequireDefault(_mejs);
 
 var _renderer = _dereq_(7);
 
-var _dom = _dereq_(28);
+var _dom = _dereq_(30);
 
-var _media = _dereq_(30);
+var _media = _dereq_(32);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9460,7 +9920,7 @@ if (_window2.default.postMessage && _typeof(_window2.default.addEventListener)) 
 	_renderer.renderer.add(YouTubeIframeRenderer);
 }
 
-},{"2":2,"28":28,"3":3,"30":30,"6":6,"7":7}],27:[function(_dereq_,module,exports){
+},{"2":2,"3":3,"30":30,"32":32,"6":6,"7":7}],29:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -9651,7 +10111,7 @@ _mejs2.default.Features.isFullScreen = isFullScreen;
 _mejs2.default.Features.requestFullScreen = requestFullScreen;
 _mejs2.default.Features.cancelFullScreen = cancelFullScreen;
 
-},{"2":2,"3":3,"6":6}],28:[function(_dereq_,module,exports){
+},{"2":2,"3":3,"6":6}],30:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -9748,7 +10208,7 @@ _mejs2.default.Utils.createEvent = createEvent;
 _mejs2.default.Utils.removeEvent = removeEvent;
 _mejs2.default.Utils.isNodeAfter = isNodeAfter;
 
-},{"2":2,"6":6}],29:[function(_dereq_,module,exports){
+},{"2":2,"6":6}],31:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -9905,7 +10365,7 @@ _mejs2.default.Utils.isObjectEmpty = isObjectEmpty;
 _mejs2.default.Utils.splitEvents = splitEvents;
 _mejs2.default.Utils.getElementsByClassName = getElementsByClassName;
 
-},{"2":2,"6":6}],30:[function(_dereq_,module,exports){
+},{"2":2,"6":6}],32:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -9923,7 +10383,7 @@ var _mejs = _dereq_(6);
 
 var _mejs2 = _interopRequireDefault(_mejs);
 
-var _general = _dereq_(29);
+var _general = _dereq_(31);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10075,7 +10535,7 @@ _mejs2.default.Utils.getTypeFromFile = getTypeFromFile;
 _mejs2.default.Utils.getExtension = getExtension;
 _mejs2.default.Utils.normalizeExtension = normalizeExtension;
 
-},{"29":29,"6":6}],31:[function(_dereq_,module,exports){
+},{"31":31,"6":6}],33:[function(_dereq_,module,exports){
 'use strict';
 
 var _document = _dereq_(2);
@@ -10284,7 +10744,7 @@ if (!String.prototype.startsWith) {
 	};
 }
 
-},{"2":2}],32:[function(_dereq_,module,exports){
+},{"2":2}],34:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -10479,4 +10939,4 @@ _mejs2.default.Utils.timeCodeToSeconds = timeCodeToSeconds;
 _mejs2.default.Utils.calculateTimeFormat = calculateTimeFormat;
 _mejs2.default.Utils.convertSMPTEtoSeconds = convertSMPTEtoSeconds;
 
-},{"6":6}]},{},[31,5,4,14,23,20,17,18,19,21,22,24,25,26,15,16,8,9,10,11,12,13]);
+},{"6":6}]},{},[33,5,4,15,24,27,21,18,19,20,22,23,25,26,28,16,17,8,9,10,11,12,13,14]);

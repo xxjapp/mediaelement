@@ -75,6 +75,8 @@ $('select[name=sources]').on('change', function() {
 
 $('video, audio').mediaelementplayer({
 	stretching: stretching,
+	supportVR: true,
+	features: ['playpause', 'progress', 'duration', 'volume', 'fullscreen', 'vr'],
 	pluginPath: '../build/',
 	success: function (media) {
 		$(media).closest('.media-wrapper').children('div:first').attr('lang', mejs.i18n.language());
