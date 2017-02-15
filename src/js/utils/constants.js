@@ -12,12 +12,12 @@ export const IS_IPHONE = (UA.match(/iphone/i) !== null);
 export const IS_IOS = IS_IPHONE || IS_IPAD;
 export const IS_ANDROID = (UA.match(/android/i) !== null);
 export const IS_IE = (NAV.appName.toLowerCase().includes('microsoft') || NAV.appName.toLowerCase().match(/trident/gi) !== null);
+export const IS_EDGE = ('msLaunchUri' in NAV && !('documentMode' in document));
 export const IS_CHROME = (UA.match(/chrome/gi) !== null);
 export const IS_FIREFOX = (UA.match(/firefox/gi) !== null);
 export const IS_SAFARI = (UA.match(/safari/gi) !== null) && !IS_CHROME;
 export const IS_STOCK_ANDROID = (UA.match(/^mozilla\/\d+\.\d+\s\(linux;\su;/gi) !== null);
 
-export const HAS_TOUCH = !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof window.DocumentTouch);
 export const HAS_MSE = ('MediaSource' in window);
 export const SUPPORT_POINTER_EVENTS = (() => {
 	let
@@ -152,11 +152,11 @@ mejs.Features.isiPhone = IS_IPHONE;
 mejs.Features.isiOS = mejs.Features.isiPhone || mejs.Features.isiPad;
 mejs.Features.isAndroid = IS_ANDROID;
 mejs.Features.isIE = IS_IE;
+mejs.Features.isEdge = IS_EDGE;
 mejs.Features.isChrome = IS_CHROME;
 mejs.Features.isFirefox = IS_FIREFOX;
 mejs.Features.isSafari = IS_SAFARI;
 mejs.Features.isStockAndroid = IS_STOCK_ANDROID;
-mejs.Features.hasTouch = HAS_TOUCH;
 mejs.Features.hasMSE = HAS_MSE;
 mejs.Features.supportsMediaTag = SUPPORTS_MEDIA_TAG;
 mejs.Features.supportsNativeHLS = SUPPORTS_NATIVE_HLS;

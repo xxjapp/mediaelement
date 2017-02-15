@@ -1,10 +1,52 @@
 ### Version History
 
-*3.0.2 (2017/??/??)*
+*3.1.3 (2017/??/??)*
+
+* Fixed typo in `usage.md` in regards of Automatic start (https://github.com/johndyer/mediaelement/pull/2071) @SvenJuergens
+* Added translation for Polish language (https://github.com/johndyer/mediaelement/pull/2074) @greg-dev
+* Added translation for Russian language (https://github.com/johndyer/mediaelement/pull/2073) @Globulopolis
+* Added overlay on `iframe` renderers to allow triggering mouse/click events properly @ron666 
+* Fixed issue with inconsistency between `MediaElementPlayer` and `MediaElement` instantiations @ron666
+* Fixed race issue when calling `play` and `pause` together @ron666
+* Fixed minor issues with FLV native renderer and updated documentation @ron666
+
+*3.1.2 (2017/02/10)*
+
+* Expanded workflow to stop media loading completely when removing player @ron666
+* Added more fixes to Flash audio shim (https://github.com/johndyer/mediaelement/pull/2054) @an1rk4
+* Added security statements on almost all shims to allow to be played cross-domain @ron666
+* Removed HAS_TOUCH flag considered unnecessary @ron666
+* Fixed workflow to detect if libraries on HLS, DASH and FLV renderers were already loaded @ron666
+* Reintegrated workflow to load source using flashvar `src` in audio (https://github.com/johndyer/mediaelement/pull/2059) @astr0junk
+* Improved documentation for Installation and API @ron666
+* Added workflow to sanitize HTML for captions due to potential XSS vulnerability @ron666 
+* Added muted workflow for audio Flash shim (https://github.com/johndyer/mediaelement/pull/2063) @an1rk4
+* Added CDNjs badge for README @ron666
+* Added validation to avoid Flash check on MS Edge due to issues with `plugins` element @ron666
+* Added reference to "johndyer/mediaelement-plugins" (https://github.com/johndyer/mediaelement/pull/2067) @isantolin
+* Standardized way to display chapters tracks using button and menu @ron666
+
+*3.1.1 (2017/02/02)*
+
+* Added patch in Flash audio shim to load new source correctly @an1rk4
+* Fixed issues when removing player, specially when using any Flash shim @ron666
+
+*3.1.0 (2017/02/02)*
 
 * Updated documentation about how to use custom player (HLS, DASH, FLV, etc.) correctly @ron666
+* Expanded Renderers List table and other documentation tweaks @ron666
 * Updated German translations (https://github.com/johndyer/mediaelement/pull/2031) @SoftCreatR
 * Added `hideVideoControlsOnPause` configuration element to hide controls when media is paused @ron666
+* Added `showPosterWhenPaused` option and updated documentation @ron666
+* Added new media to demo file to match main website and reformatted `demo/demo.js` @ron666
+* Added missing method call when removing media through `remove()` method and documented workflow to remove player @ron666
+* Added new array element to map all read-only properties to avoid `TypeError` on certain properties @ron666
+* Added workflow to use YouTube as an audio player @ron666
+* Updated usage.md file (https://github.com/johndyer/mediaelement/pull/2043) @theomathieubhvr
+* Added workflow to pause media when sliding rail to improve memory performance (https://github.com/johndyer/mediaelement/pull/2041) @ricking06 and @ron666
+* Changed name of NPM file `all.js` to `full.js` for clarity purposes @ron666
+* Added missing elements on `mediaelementplayer.js` bundle @ron666
+* Fixed issues when using audio shim @ron666
 
 *3.0.2 (2017/01/27)*
 

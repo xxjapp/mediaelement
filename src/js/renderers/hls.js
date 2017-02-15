@@ -51,34 +51,33 @@ const NativeHls = {
 	 * @param {Object} settings - an object with settings needed to load an HLS player instance
 	 */
 	loadScript: (settings) => {
-		if (!NativeHls.isMediaStarted) {
 
-			if (typeof Hls !== 'undefined') {
-				NativeHls.createInstance(settings);
-			} else {
+		// Skip script loading since it is already loaded
+		if (typeof Hls !== 'undefined') {
+			NativeHls.createInstance(settings);
+		} else if (!NativeHls.isMediaStarted) {
 
-				settings.options.path = typeof settings.options.path === 'string' ?
-					settings.options.path : '//cdn.jsdelivr.net/hls.js/latest/hls.min.js';
+			settings.options.path = typeof settings.options.path === 'string' ?
+				settings.options.path : '//cdn.jsdelivr.net/hls.js/latest/hls.min.js';
 
-				let
-					script = document.createElement('script'),
-					firstScriptTag = document.getElementsByTagName('script')[0],
-					done = false;
+			let
+				script = document.createElement('script'),
+				firstScriptTag = document.getElementsByTagName('script')[0],
+				done = false;
 
-				script.src = settings.options.path;
+			script.src = settings.options.path;
 
-				// Attach handlers for all browsers
-				script.onload = script.onreadystatechange = function() {
-					if (!done && (!this.readyState || this.readyState === undefined ||
-						this.readyState === 'loaded' || this.readyState === 'complete')) {
-						done = true;
-						NativeHls.mediaReady();
-						script.onload = script.onreadystatechange = null;
-					}
-				};
+			// Attach handlers for all browsers
+			script.onload = script.onreadystatechange = function () {
+				if (!done && (!this.readyState || this.readyState === undefined ||
+					this.readyState === 'loaded' || this.readyState === 'complete')) {
+					done = true;
+					NativeHls.mediaReady();
+					script.onload = script.onreadystatechange = null;
+				}
+			};
 
-				firstScriptTag.parentNode.insertBefore(script, firstScriptTag);
-			}
+			firstScriptTag.parentNode.insertBefore(script, firstScriptTag);
 			NativeHls.isMediaStarted = true;
 		}
 	},
@@ -192,7 +191,7 @@ const HlsNativeRenderer = {
 			stack = {},
 			i,
 			il
-		;
+			;
 
 		node = originalNode.cloneNode(true);
 		options = Object.assign(options, mediaElement.options);
@@ -203,34 +202,36 @@ const HlsNativeRenderer = {
 			assignGettersSetters = (propName) => {
 				const capName = `${propName.substring(0, 1).toUpperCase()}${propName.substring(1)}`;
 
-				node[`get${capName}`] = () => hlsPlayer !== null ?  node[propName] : null;
+				node[`get${capName}`] = () => hlsPlayer !== null ? node[propName] : null;
 
 				node[`set${capName}`] = (value) => {
-					if (hlsPlayer !== null) {
-						node[propName] = value;
+					if (!mejs.html5media.readOnlyProperties.includes(propName)) {
+						if (hlsPlayer !== null) {
+							node[propName] = value;
 
-						if (propName === 'src') {
+							if (propName === 'src') {
 
-							hlsPlayer.destroy();
-							hlsPlayer = null;
-							hlsPlayer = NativeHls.createInstance({
-								options: options.hls,
-								id: id
-							});
+								hlsPlayer.destroy();
+								hlsPlayer = null;
+								hlsPlayer = NativeHls.createInstance({
+									options: options.hls,
+									id: id
+								});
 
-							hlsPlayer.attachMedia(node);
-							hlsPlayer.on(Hls.Events.MEDIA_ATTACHED, () => {
-								hlsPlayer.loadSource(value);
-							});
+								hlsPlayer.attachMedia(node);
+								hlsPlayer.on(Hls.Events.MEDIA_ATTACHED, () => {
+									hlsPlayer.loadSource(value);
+								});
+							}
+						} else {
+							// store for after "READY" event fires
+							stack.push({type: 'set', propName: propName, value: value});
 						}
-					} else {
-						// store for after "READY" event fires
-						stack.push({type: 'set', propName: propName, value: value});
 					}
 				};
 
 			}
-		;
+			;
 
 		for (i = 0, il = props.length; i < il; i++) {
 			assignGettersSetters(props[i]);
@@ -286,7 +287,7 @@ const HlsNativeRenderer = {
 					});
 
 				}
-			;
+				;
 
 			events = events.concat(['click', 'mouseover', 'mouseout']);
 

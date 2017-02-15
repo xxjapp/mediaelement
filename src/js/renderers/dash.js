@@ -47,34 +47,34 @@ const NativeDash = {
 	 * @param {Object} settings - an object with settings needed to load an DASH player instance
 	 */
 	loadScript: (settings) => {
-		if (!NativeDash.isScriptLoaded) {
 
-			if (typeof dashjs !== 'undefined') {
-				NativeDash.createInstance(settings);
-			} else {
+		// Skip script loading since it is already loaded
+		if (typeof dashjs !== 'undefined') {
+			NativeDash.createInstance(settings);
+		} else if (!NativeDash.isScriptLoaded) {
 
-				settings.options.path = typeof settings.options.path === 'string' ?
-					settings.options.path : '//cdn.dashjs.org/latest/dash.mediaplayer.min.js';
+			settings.options.path = typeof settings.options.path === 'string' ?
+				settings.options.path : '//cdn.dashjs.org/latest/dash.mediaplayer.min.js';
 
-				let
-					script = document.createElement('script'),
-					firstScriptTag = document.getElementsByTagName('script')[0],
-					done = false;
+			let
+				script = document.createElement('script'),
+				firstScriptTag = document.getElementsByTagName('script')[0],
+				done = false;
 
-				script.src = settings.options.path;
+			script.src = settings.options.path;
 
-				// Attach handlers for all browsers
-				script.onload = script.onreadystatechange = function() {
-					if (!done && (!this.readyState || this.readyState === undefined ||
-						this.readyState === 'loaded' || this.readyState === 'complete')) {
-						done = true;
-						NativeDash.mediaReady();
-						script.onload = script.onreadystatechange = null;
-					}
-				};
+			// Attach handlers for all browsers
+			script.onload = script.onreadystatechange = function() {
+				if (!done && (!this.readyState || this.readyState === undefined ||
+					this.readyState === 'loaded' || this.readyState === 'complete')) {
+					done = true;
+					NativeDash.mediaReady();
+					script.onload = script.onreadystatechange = null;
+				}
+			};
 
-				firstScriptTag.parentNode.insertBefore(script, firstScriptTag);
-			}
+			firstScriptTag.parentNode.insertBefore(script, firstScriptTag);
+
 			NativeDash.isScriptLoaded = true;
 		}
 	},
@@ -157,20 +157,22 @@ let DashNativeRenderer = {
 				node[`get${capName}`] = () => (dashPlayer !== null) ? node[propName] : null;
 
 				node[`set${capName}`] = (value) => {
-					if (dashPlayer !== null) {
-						if (propName === 'src') {
+					if (!mejs.html5media.readOnlyProperties.includes(propName)) {
+						if (dashPlayer !== null) {
+							if (propName === 'src') {
 
-							dashPlayer.attachSource(value);
+								dashPlayer.attachSource(value);
 
-							if (node.getAttribute('autoplay')) {
-								node.play();
+								if (node.getAttribute('autoplay')) {
+									node.play();
+								}
 							}
-						}
 
-						node[propName] = value;
-					} else {
-						// store for after "READY" event fires
-						stack.push({type: 'set', propName: propName, value: value});
+							node[propName] = value;
+						} else {
+							// store for after "READY" event fires
+							stack.push({type: 'set', propName: propName, value: value});
+						}
 					}
 				};
 

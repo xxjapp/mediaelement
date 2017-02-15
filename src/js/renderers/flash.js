@@ -6,7 +6,7 @@ import mejs from '../core/mejs';
 import i18n from '../core/i18n';
 import {renderer} from '../core/renderer';
 import {createEvent} from '../utils/dom';
-import {NAV, IS_IE, HAS_MSE, SUPPORTS_NATIVE_HLS} from '../utils/constants';
+import {NAV, IS_IE, IS_EDGE, HAS_MSE, SUPPORTS_NATIVE_HLS} from '../utils/constants';
 import {typeChecks, absolutizeUrl} from '../utils/media';
 
 /**
@@ -72,8 +72,8 @@ export const PluginDetector = {
 			ax
 		;
 
-		// Firefox, Webkit, Opera
-		if (NAV.plugins !== undefined && typeof NAV.plugins[pluginName] === 'object') {
+		// Firefox, Webkit, Opera; avoid MS Edge since `plugins` cannot be accessed
+		if (!IS_EDGE && NAV.plugins !== null && NAV.plugins !== undefined && typeof NAV.plugins[pluginName] === 'object') {
 			description = NAV.plugins[pluginName].description;
 			if (description && !(typeof NAV.mimeTypes !== 'undefined' && NAV.mimeTypes[mimeType] && !NAV.mimeTypes[mimeType].enabledPlugin)) {
 				version = description.replace(pluginName, '').replace(/^\s+/, '').replace(/\sr/gi, '.').split('.');
@@ -241,14 +241,19 @@ const FlashMediaElementRenderer = {
 			assignMethods(methods[i]);
 		}
 
+		// give initial events like in others renderers
+		let initEvents = ['rendererready', 'loadeddata', 'loadedmetadata', 'canplay'];
+
+		for (i = 0, il = initEvents.length; i < il; i++) {
+			let event = createEvent(initEvents[i], flash);
+			mediaElement.dispatchEvent(event);
+		}
+
 		// add a ready method that Flash can call to
 		window[`__ready__${flash.id}`] = () => {
 
 			flash.flashReady = true;
 			flash.flashApi = document.getElementById(`__${flash.id}`);
-
-			let event = createEvent('rendererready', flash);
-			mediaElement.dispatchEvent(event);
 
 			// do call stack
 			if (flash.flashApiStack.length) {
@@ -289,6 +294,10 @@ const FlashMediaElementRenderer = {
 			flashHeight = (isVideo) ? mediaElement.originalNode.height : 1,
 			flashWidth = (isVideo) ? mediaElement.originalNode.width : 1;
 
+		if (!!mediaElement.originalNode.currentSrc.length) {
+			flashVars.push(`src=${mediaElement.originalNode.currentSrc}`);
+		}
+
 		if (flash.options.enablePseudoStreaming === true) {
 			flashVars.push(`pseudostreamstart=${flash.options.pseudoStreamingStartQueryParam}`);
 			flashVars.push(`pseudostreamtype=${flash.options.pseudoStreamingType}`);
@@ -296,7 +305,7 @@ const FlashMediaElementRenderer = {
 
 		mediaElement.appendChild(flash.flashWrapper);
 
-		if (isVideo && mediaElement.originalNode !== null) {
+		if (mediaElement.originalNode !== null) {
 			mediaElement.originalNode.style.display = 'none';
 		}
 
@@ -384,9 +393,13 @@ const FlashMediaElementRenderer = {
 			flash.flashNode.style.width = width + 'px';
 			flash.flashNode.style.height = height + 'px';
 
-			if (flash.flashApi !== null) {
+			if (flash.flashApi !== null && typeof flash.flashApi.fire_setSize === 'function') {
 				flash.flashApi.fire_setSize(width, height);
 			}
+		};
+
+		flash.destroy = () => {
+			flash.flashNode.parentNode.removeChild(flash.flashNode);
 		};
 
 
@@ -394,7 +407,6 @@ const FlashMediaElementRenderer = {
 			for (i = 0, il = mediaFiles.length; i < il; i++) {
 				if (renderer.renderers[options.prefix].canPlayType(mediaFiles[i].type)) {
 					flash.setSrc(mediaFiles[i].src);
-					flash.load();
 					break;
 				}
 			}
@@ -428,9 +440,12 @@ if (hasFlash) {
 			return 'application/x-mpegURL';
 		} else if (!HAS_MSE && url.includes('.mpd')) {
 			return 'application/dash+xml';
-		} else {
+		} else if (!HAS_MSE && url.includes('.flv')) {
+			return 'video/flv';
+		}else {
 			return null;
 		}
+
 	});
 
 	// VIDEO
@@ -452,7 +467,8 @@ if (hasFlash) {
 		 * @param {String} type
 		 * @return {Boolean}
 		 */
-		canPlayType: (type) => hasFlash && ['video/mp4', 'video/flv', 'video/rtmp', 'audio/rtmp', 'rtmp/mp4', 'audio/mp4'].includes(type),
+		canPlayType: (type) => hasFlash && ['video/mp4', 'video/rtmp', 'audio/rtmp', 'rtmp/mp4', 'audio/mp4'].includes(type) ||
+			!HAS_MSE && hasFlash && ['video/flv', 'video/x-flv'].includes(type),
 
 		create: FlashMediaElementRenderer.create
 

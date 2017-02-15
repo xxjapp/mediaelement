@@ -11,13 +11,13 @@ import {
 	IS_IPHONE,
 	IS_ANDROID,
 	IS_IOS,
-	HAS_TOUCH,
 	HAS_MS_NATIVE_FULLSCREEN,
 	HAS_TRUE_NATIVE_FULLSCREEN
 } from './utils/constants';
 import {splitEvents} from './utils/general';
 import {calculateTimeFormat} from './utils/time';
 import {isNodeAfter} from './utils/dom';
+import {getTypeFromFile} from './utils/media';
 
 mejs.mepIndex = 0;
 
@@ -27,37 +27,39 @@ mejs.players = {};
 export let config = {
 	// url to poster (to fix iOS 3.x)
 	poster: '',
-	// When the video is ended, we can show the poster.
+	// When the video is ended, show the poster.
 	showPosterWhenEnded: false,
-	// default if the <video width> is not specified
+	// When the video is paused, show the poster.
+	showPosterWhenPaused: false,
+	// Default if the <video width> is not specified
 	defaultVideoWidth: 480,
-	// default if the <video height> is not specified
+	// Default if the <video height> is not specified
 	defaultVideoHeight: 270,
-	// if set, overrides <video width>
+	// If set, overrides <video width>
 	videoWidth: -1,
-	// if set, overrides <video height>
+	// If set, overrides <video height>
 	videoHeight: -1,
-	// default if the user doesn't specify
+	// Default if the user doesn't specify
 	defaultAudioWidth: 400,
-	// default if the user doesn't specify
+	// Default if the user doesn't specify
 	defaultAudioHeight: 40,
-	// default amount to move back when back key is pressed
+	// Default amount to move back when back key is pressed
 	defaultSeekBackwardInterval: (media) => media.duration * 0.05,
-	// default amount to move forward when forward key is pressed
+	// Default amount to move forward when forward key is pressed
 	defaultSeekForwardInterval: (media) => media.duration * 0.05,
-	// set dimensions via JS instead of CSS
+	// Set dimensions via JS instead of CSS
 	setDimensions: true,
-	// width of audio player
+	// Width of audio player
 	audioWidth: -1,
-	// height of audio player
+	// Height of audio player
 	audioHeight: -1,
-	// initial volume when the player starts (overridden by user cookie)
+	// Initial volume when the player starts (overridden by user cookie)
 	startVolume: 0.8,
-	// useful for <audio> player loops
+	// Useful for <audio> player loops
 	loop: false,
-	// rewind to beginning when media ends
+	// Rewind to beginning when media ends
 	autoRewind: true,
-	// resize to media dimensions
+	// Resize to media dimensions
 	enableAutosize: true,
 	/*
 	 * Time format to use. Default: 'mm:ss'
@@ -75,11 +77,11 @@ export let config = {
 	 * Format 'm:s': 1:15
 	 */
 	timeFormat: '',
-	// forces the hour marker (##:00:00)
+	// Force the hour marker (##:00:00)
 	alwaysShowHours: false,
-	// show framecount in timecode (##:00:00:00)
+	// Show framecount in timecode (##:00:00:00)
 	showTimecodeFrameCount: false,
-	// used when showTimecodeFrameCount is set to true
+	// Used when showTimecodeFrameCount is set to true
 	framesPerSecond: 25,
 	// Hide controls when playing and mouse is not over the video
 	alwaysShowControls: false,
@@ -95,25 +97,25 @@ export let config = {
 	controlsTimeoutMouseEnter: 2500,
 	// Time in ms to trigger the timer when mouse leaves
 	controlsTimeoutMouseLeave: 1000,
-	// force iPad's native controls
+	// Force iPad's native controls
 	iPadUseNativeControls: false,
-	// force iPhone's native controls
+	// Force iPhone's native controls
 	iPhoneUseNativeControls: false,
-	// force Android's native controls
+	// Force Android's native controls
 	AndroidUseNativeControls: false,
-	// features to show
+	// Features to show
 	features: ['playpause', 'current', 'progress', 'duration', 'tracks', 'volume', 'fullscreen'],
-	// only for dynamic
+	// Only for dynamic
 	isVideo: true,
-	// stretching modes (auto, fill, responsive, none)
+	// Stretching modes (auto, fill, responsive, none)
 	stretching: 'auto',
-	// prefix class names on elements
+	// Prefix class names on elements
 	classPrefix: 'mejs__',
-	// turns keyboard support on and off for this instance
+	// Turn keyboard support on and off for this instance
 	enableKeyboard: true,
-	// when this player starts, it will pause other players
+	// When this player starts, it will pause other players
 	pauseOtherPlayers: true,
-	// array of keyboard actions such as play/pause
+	// Array of keyboard actions such as play/pause
 	keyActions: [
 		{
 			keys: [
@@ -251,7 +253,7 @@ mejs.MepDefaults = config;
  * Wrap a MediaElement object in player controls
  *
  * @constructor
- * @param {HTMLElement} node
+ * @param {HTMLElement|String} node
  * @param {Object} o
  * @return {?MediaElementPlayer}
  */
@@ -269,13 +271,15 @@ class MediaElementPlayer {
 
 		t.controlsTimer = null;
 
+		const element = typeof node === 'string' ? document.getElementById(node) : node;
+
 		// enforce object, even without "new" (via John Resig)
 		if (!(t instanceof MediaElementPlayer)) {
-			return new MediaElementPlayer(node, o);
+			return new MediaElementPlayer(element, o);
 		}
 
 		// these will be reset after the MediaElement.success fires
-		t.$media = t.$node = $(node);
+		t.$media = t.$node = $(element);
 		t.node = t.media = t.$media[0];
 
 		if (!t.node) {
@@ -690,7 +694,7 @@ class MediaElementPlayer {
 			// controls fade
 			if (t.isVideo) {
 
-				if (HAS_TOUCH && !t.options.alwaysShowControls) {
+				if ((IS_ANDROID || IS_IOS) && !t.options.alwaysShowControls) {
 
 					// for touch devices (iOS, Android)
 					// show/hide without animation on touch
@@ -734,49 +738,35 @@ class MediaElementPlayer {
 
 					// click to play/pause
 					t.media.addEventListener('click', t.clickToPlayPauseCallback, false);
-					// t.iframeMouseOver = false;
 
 					// show/hide controls
 					t.container
-					.on('mouseenter', () => {
-						if (t.controlsEnabled) {
-							if (!t.options.alwaysShowControls) {
-								t.killControlsTimer('enter');
-								t.showControls();
-								t.startControlsTimer(t.options.controlsTimeoutMouseEnter);
+						.on('mouseenter', () => {
+							if (t.controlsEnabled) {
+								if (!t.options.alwaysShowControls) {
+									t.killControlsTimer('enter');
+									t.showControls();
+									t.startControlsTimer(t.options.controlsTimeoutMouseEnter);
+								}
 							}
-						}
-					})
-					.on('mousemove', () => {
-						if (t.controlsEnabled) {
-							if (!t.controlsAreVisible) {
-								t.showControls();
+						})
+						.on('mousemove', () => {
+							if (t.controlsEnabled) {
+								if (!t.controlsAreVisible) {
+									t.showControls();
+								}
+								if (!t.options.alwaysShowControls) {
+									t.startControlsTimer(t.options.controlsTimeoutMouseEnter);
+								}
 							}
-							if (!t.options.alwaysShowControls) {
-								t.startControlsTimer(t.options.controlsTimeoutMouseEnter);
+						})
+						.on('mouseleave', () => {
+							if (t.controlsEnabled) {
+								if (!t.media.paused && !t.options.alwaysShowControls) {
+									t.startControlsTimer(t.options.controlsTimeoutMouseLeave);
+								}
 							}
-						}
-					})
-					.on('mouseleave', () => {
-						if (t.controlsEnabled) {
-							if (!t.media.paused && !t.options.alwaysShowControls) {
-								t.startControlsTimer(t.options.controlsTimeoutMouseLeave);
-							}
-						}
-					});
-					// }).on('mouseover', () => {
-					// 	t.iframeMouseOver = true;
-					// }).on('mouseout', () => {
-					// 	t.iframeMouseOver = false;
-					// });
-					//
-					// const monitor = setInterval(function(){
-					// 	const elem = document.activeElement;
-					// 	if (elem && elem.tagName === 'IFRAME') {
-					// 		t.clickToPlayPauseCallback();
-					// 		clearInterval(monitor);
-					// 	}
-					// }, 50);
+						});
 				}
 
 				if (t.options.hideVideoControlsOnLoad) {
@@ -876,8 +866,8 @@ class MediaElementPlayer {
 			// Only change the time format when necessary
 			let duration = null;
 			t.media.addEventListener('timeupdate', () => {
-				if (duration !== this.duration) {
-					duration = this.duration;
+				if (duration !== t.media.duration) {
+					duration = t.media.duration;
 					calculateTimeFormat(duration, t.options, t.options.framesPerSecond || 25);
 
 					// make sure to fill in and resize the controls (e.g., 00:00 => 01:13:15
@@ -888,7 +878,6 @@ class MediaElementPlayer {
 						t.updateCurrent();
 					}
 					t.setControlsSize();
-
 				}
 			}, false);
 
@@ -1260,7 +1249,9 @@ class MediaElementPlayer {
 		;
 
 		t.rail.siblings().each((index, object) => {
-			siblingsWidth += parseFloat($(object).outerWidth(true));
+			if ($(object).is(':visible')) {
+				siblingsWidth += parseFloat($(object).outerWidth(true));
+			}
 		});
 
 		siblingsWidth += totalMargin + railMargin + 1;
@@ -1360,6 +1351,16 @@ class MediaElementPlayer {
 		if (player.options.showPosterWhenEnded && player.options.autoRewind) {
 			media.addEventListener('ended', () => {
 				poster.show();
+			}, false);
+		}
+
+		if (player.options.showPosterWhenPaused) {
+			media.addEventListener('pause', () => {
+				// To avoid displaying the poster when video ended, since it
+				// triggers a pause event as well
+				if (!media.ended) {
+					poster.show();
+				}
 			}, false);
 		}
 	}
@@ -1542,13 +1543,23 @@ class MediaElementPlayer {
 	}
 
 	play () {
-		let t = this;
+		let
+			t = this,
+			waitTime = 150
+		;
 
-		// only load if the current time is 0 to ensure proper playing
-		if (t.media.getCurrentTime() <= 0) {
-			t.load();
-		}
-		t.media.play();
+		// Give the timeout enough time to avoid race conflict between `pause()` and `play()`.
+		setTimeout(function () {
+			if (t.media.paused) {
+				// only load if the current time is 0 to ensure proper playing
+				if (t.media.getCurrentTime() <= 0) {
+					t.load();
+				}
+				t.media.play();
+			}
+		}, waitTime);
+
+
 	}
 
 	pause () {
@@ -1589,7 +1600,26 @@ class MediaElementPlayer {
 	}
 
 	setSrc (src) {
-		this.media.setSrc(src);
+		const t = this;
+		t.media.setSrc(src);
+
+		if (t.media.rendererName.match(/iframe/i) !== null) {
+
+			$(`<div id="${t.media.id}-iframe-overlay" class="${t.options.classPrefix}iframe-overlay"></div>`)
+				.insertBefore($(`#${t.media.id}_${t.media.rendererName}`))
+				.on('click', function(e) {
+					if (t.options.clickToPlayPause) {
+						if (t.media.paused) {
+							t.media.play();
+						} else {
+							t.media.pause();
+						}
+
+						e.preventDefault();
+						e.stopPropagation();
+					}
+				});
+		}
 	}
 
 	remove () {
@@ -1598,6 +1628,14 @@ class MediaElementPlayer {
 			t = this,
 			rendererName = t.media.rendererName
 		;
+
+		// Stop completely media playing
+		if (!t.media.paused) {
+			t.media.pause();
+		}
+
+		const src = t.media.originalNode.getAttribute('src');
+		t.media.setSrc('');
 
 		// invoke features cleanup
 		for (let featureIndex in t.options.features) {
@@ -1624,13 +1662,30 @@ class MediaElementPlayer {
 			// detach events from the video
 			// @todo: detach event listeners better than this; also detach ONLY the events attached by this plugin!
 			t.$node.attr('id', t.$node.attr('id').replace(`_${rendererName}`, ''));
+			t.$node.attr('id', t.$node.attr('id').replace('_from_mejs', ''));
+
+			// Remove `autoplay` (not worth bringing it back once player is destroyed)
+			t.$node.removeProp('autoplay');
+
+			// Reintegrate file if it can be played
+			if (t.media.canPlayType(getTypeFromFile(src))) {
+				t.$node.attr('src', src);
+			}
+
+			// If <iframe>, remove overlay
+			if (rendererName.match(/iframe/i) !== null) {
+				t.container.find(`#${t.media.id}-iframe-overlay`).remove();
+			}
+
 			t.$node.clone().insertBefore(t.container).show();
 			t.$node.remove();
 		} else {
 			t.$node.insertBefore(t.container);
 		}
 
-		t.media.remove();
+		if (typeof t.media.destroy === 'function') {
+			t.media.destroy();
+		}
 
 		// Remove the player from the mejs.players object so that pauseOtherPlayers doesn't blow up when trying to
 		// pause a non existent Flash API.
@@ -1641,6 +1696,7 @@ class MediaElementPlayer {
 			t.container.remove();
 		}
 		t.globalUnbind();
+
 		delete t.node.player;
 	}
 }
