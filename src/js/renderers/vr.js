@@ -50,10 +50,12 @@ const VrAPI = {
 			if (typeof VRView !== 'undefined') {
 				VrAPI.createInstance(settings);
 			} else {
-				let
+				const
 					script = document.createElement('script'),
-					firstScriptTag = document.getElementsByTagName('script')[0],
-					done = false;
+					firstScriptTag = document.getElementsByTagName('script')[0]
+				;
+
+				let done = false;
 
 				settings.options.path = typeof settings.options.path === 'string' ?
 					settings.options.path : '//storage.googleapis.com/vrview/2.0/build/vrview.min.js';
@@ -140,10 +142,14 @@ const VrRenderer = {
 	create: (mediaElement, options, mediaFiles) => {
 
 		// exposed object
-		let
+		const
 			stack = [],
-			VrAPIReady = false,
-			vr = {},
+			vr = {}
+		;
+
+		let
+			i,
+			il,
 			vrPlayer = null,
 			paused = true,
 			volume = 1,
@@ -152,10 +158,9 @@ const VrRenderer = {
 			bufferedTime = 0,
 			ended = false,
 			duration = 0,
-			url = '',
-			i,
-			il
+			url = ''
 		;
+
 
 		vr.options = options;
 		vr.id = mediaElement.id + '_' + options.prefix;
@@ -170,7 +175,7 @@ const VrRenderer = {
 
 				vr['get' + capName] = () => {
 					if (vrPlayer !== null) {
-						let value = null;
+						const value = null;
 
 						switch (propName) {
 							case 'currentTime':
@@ -219,7 +224,7 @@ const VrRenderer = {
 						switch (propName) {
 
 							case 'src':
-								let url = typeof value === 'string' ? value : value[0].src;
+								const url = typeof value === 'string' ? value : value[0].src;
 								vrPlayer.setContentInfo({video: url});
 								break;
 
@@ -239,6 +244,7 @@ const VrRenderer = {
 								break;
 							default:
 								console.log('vr ' + vr.id, propName, 'UNSUPPORTED property');
+								break;
 						}
 
 					} else {
@@ -286,18 +292,19 @@ const VrRenderer = {
 		// Initial method to register all VRView events when initializing <iframe>
 		window['__ready__' + vr.id] = (_vrPlayer) => {
 
-			VrAPIReady = true;
 			mediaElement.vrPlayer = vrPlayer = _vrPlayer;
 
 			// do call stack
 			if (stack.length) {
 				for (i = 0, il = stack.length; i < il; i++) {
 
-					let stackItem = stack[i];
+					const stackItem = stack[i];
 
 					if (stackItem.type === 'set') {
-						let propName = stackItem.propName,
-							capName = `${propName.substring(0, 1).toUpperCase()}${propName.substring(1)}`;
+						const
+							propName = stackItem.propName,
+							capName = `${propName.substring(0, 1).toUpperCase()}${propName.substring(1)}`
+						;
 
 						node[`set${capName}`](stackItem.value);
 					} else if (stackItem.type === 'call') {
@@ -311,7 +318,7 @@ const VrRenderer = {
 				// a few more events
 				let events = ['mouseover', 'mouseout'];
 
-				let assignEvents = (e) => {
+				const assignEvents = (e) => {
 					let event = createEvent(e.type, vr);
 					mediaElement.dispatchEvent(event);
 				};
@@ -324,13 +331,13 @@ const VrRenderer = {
 				events = ['rendererready', 'loadeddata', 'loadedmetadata', 'canplay'];
 
 				for (let i = 0, il = events.length; i < il; i++) {
-					let event = createEvent(events[i], vr);
+					const event = createEvent(events[i], vr);
 					mediaElement.dispatchEvent(event);
 				}
 			});
 
 			vrPlayer.on('timeupdate', () => {
-				let event = createEvent('timeupdate', vr);
+				const event = createEvent('timeupdate', vr);
 				mediaElement.dispatchEvent(event);
 			});
 		};
@@ -368,7 +375,7 @@ const VrRenderer = {
 			}
 		};
 
-		vr.setSize = (width, height) => {};
+		vr.setSize = () => {};
 
 		vr.show = () => {
 			if (vrPlayer) {
