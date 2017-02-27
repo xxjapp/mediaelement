@@ -475,7 +475,13 @@ Or, simply, type in Terminal `grunt shell` to create all the SWF files in the ri
 <a id="building"></a>
 ## Building with Grunt
 
-To compile ALL the files, in your Terminal window just type `grunt` in the root of the project. 
+To compile ALL the files, in your Terminal window just type the following commands in the root of the project. 
+
+```
+npm install -g grunt-cli
+npm install
+grunt
+```
 
 You can also type `grunt debug` to avoid removing the console messages.
 
