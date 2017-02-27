@@ -180,10 +180,14 @@ const FlvNativeRenderer = {
 				node[`set${capName}`] = (value) => {
 					if (!mejs.html5media.readOnlyProperties.includes(propName)) {
 						if (flvPlayer !== null) {
+							if (propName === 'src') {
+								flvPlayer.unload();
+								flvPlayer.detachMediaElement();
+							}
+
 							node[propName] = value;
 
 							if (propName === 'src') {
-								flvPlayer.detachMediaElement();
 								flvPlayer.attachMediaElement(node);
 								flvPlayer.load();
 							}
